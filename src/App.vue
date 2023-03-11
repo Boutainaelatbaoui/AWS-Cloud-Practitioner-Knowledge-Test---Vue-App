@@ -1,9 +1,9 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import Quiz from './components/Quiz.vue'
 </script>
 
 <template>
-    <HelloWorld />
+    <Quiz />
 </template>
 
 <style scoped>
