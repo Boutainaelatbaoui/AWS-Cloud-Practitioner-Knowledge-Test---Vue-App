@@ -188,6 +188,9 @@ body {
 }
 
 .quiz-app {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   width: 70%;
   color: white;
   -webkit-box-pack: justify;
@@ -225,7 +228,6 @@ body {
 }
 
 .quiz-info {
-  display: none;
   font-family: "Poppins", sans-serif;
   text-align: center;
 }
@@ -253,6 +255,7 @@ body {
 
 .score {
   padding: 8px 20px;
+  margin-left: 75px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -262,6 +265,16 @@ body {
   border-radius: 20px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
           box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+@media (max-width: 767px) {
+  .score {
+    margin-left: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 1120px) {
+  .score {
+    margin-left: 0;
+  }
 }
 
 .username {
@@ -278,6 +291,7 @@ body {
 }
 
 .progress-bar {
+  margin-top: 6px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -285,6 +299,7 @@ body {
 }
 
 #progress-bar {
+  margin-top: 15px;
   width: 120px;
   height: 35px;
   border-radius: 20px;
@@ -535,7 +550,11 @@ body {
   }
 }
 
-#total-question, #correct-answer, #wrong-answer, #user-score, #user-name {
+#total-question,
+#correct-answer,
+#wrong-answer,
+#user-score,
+#user-name {
   color: #ffd60a;
 }
 
@@ -715,7 +734,10 @@ body {
   }
 }
 
-#incorrect-num, #user-incorrect, #user-correct, #title {
+#incorrect-num,
+#user-incorrect,
+#user-correct,
+#title {
   color: #ffc300;
   font-weight: bold;
 }

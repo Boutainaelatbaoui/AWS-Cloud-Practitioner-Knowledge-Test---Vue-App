@@ -1,4 +1,6 @@
 <script>
+import { ref } from 'vue';
+
 export default {
   data() {
     return {
@@ -125,9 +127,13 @@ export default {
       },
       ],
       showDiv1: false,
+      showDiv3: false,
       showDiv2: true,
       userName: "",
       errorMessage: '',
+      currentIndex: 0,
+      currentQuestion: 0,
+      score: 0,
     }
   },
   
@@ -136,13 +142,25 @@ export default {
       if (this.userName === '') {
         this.errorMessage = 'Please Enter a name to start the quizz';
       } else {
+        this.shuffleQuestions();
+        this.currentIndex = 0;
+        this.currentQuestion = this.questions[this.currentIndex];
+        this.score = 0;
         this.showDiv1 = !this.showDiv1;
         this.showDiv2 = !this.showDiv2;
+        this.showDiv3 = !this.showDiv3;
         this.userName = this.userName;
         this.errorMessage = '';
       }
-    }
-  }
+    },
+
+    shuffleQuestions() {
+      this.questions.sort(() => Math.random() - 0.5);
+    },
+
+  },
+
+
 }
 </script>
 
@@ -167,6 +185,15 @@ export default {
           </form>
           <button class="btn" id="start" @click="startQuiz">Start</button>
       </div>
+  </div>
+  <div class="quiz-info" id="quiz-info" v-show="showDiv3">
+      <h2 class="quiz-question" id="quiz">{{ currentQuestion.quest }}</h2>
+      <div class="answers" id="answers">
+        
+          <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`">{{ answer }}</button>
+        
+      </div>
+      <button class="next-btn" id="next">Next <i class="bi bi-chevron-double-right" id="chevron"></i></button>
   </div>
 </template>
 

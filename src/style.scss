@@ -53,16 +53,17 @@ body {
     min-height: 60px;
     font-size: 23px;
 
-    @include breakpoints(tablet){
+    @include breakpoints(tablet) {
         min-height: 59px;
         font-size: 20px;
     }
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         min-height: 45px;
         font-size: 18px;
     }
 
-    &:hover{
+    &:hover {
         cursor: pointer;
         background-color: #f8961e;
         transition: 0.7s;
@@ -77,55 +78,60 @@ body {
     min-height: 60px;
     font-size: 23px;
 
-    @include breakpoints(tablet){
+    @include breakpoints(tablet) {
         min-height: 59px;
         font-size: 20px;
     }
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         min-width: 160px;
         min-height: 45px;
         font-size: 18px;
     }
 
-    &:hover{
+    &:hover {
         cursor: pointer;
         background-color: #f8961e;
         transition: 0.7s;
     }
 }
 
-@mixin breakpoints($point){
-    @if $point == mobile {
+@mixin breakpoints($point) {
+    @if $point ==mobile {
         @media (max-width: 767px) {
             @content;
         }
-    } @else if $point == tablet {
-        @media (min-width: 768px) and (max-width: 1120px){
+    }
+
+    @else if $point ==tablet {
+        @media (min-width: 768px) and (max-width: 1120px) {
             @content;
         }
     }
 }
 
-.text-logo{
+.text-logo {
     @include logo;
     display: flex;
     justify-content: center;
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         font-size: 35px;
     }
 }
 
-.welcome-text{
+.welcome-text {
     color: $text-color;
     font-family: $font-text;
     margin-top: $margin-top;
     text-align: center;
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         font-size: 17px;
     }
 }
 
-.aws{
+.aws {
     color: $aws-clor;
     font-weight: $important-text;
 }
@@ -139,31 +145,34 @@ body {
     justify-content: center;
     border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-    @include breakpoints(tablet){
+
+    @include breakpoints(tablet) {
         width: 90%;
     }
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         width: 90%;
         height: auto;
     }
 }
 
-.first-slide{
+.first-slide {
     // display: none;
     margin-top: 10px;
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         margin-top: 80px;
     }
 }
 
-.input-btn{
+.input-btn {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.username-input{
+.username-input {
     margin-top: 20px;
     margin-bottom: 20px;
     min-width: 450px;
@@ -172,20 +181,22 @@ body {
     border-radius: 20px;
     box-shadow: $box-shadow;
 
-    &::placeholder{
+    &::placeholder {
         font-family: $font-text;
         font-size: $text-size-button;
         text-align: center;
-        @include breakpoints(mobile){
+
+        @include breakpoints(mobile) {
             font-size: 15px;
         }
     }
 
-    &:focus{
+    &:focus {
         border: 6px solid $secondary-color;
         border-radius: 20px;
     }
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         min-width: 250px;
         min-height: 35px;
         margin-top: 28px;
@@ -193,41 +204,44 @@ body {
     }
 }
 
-.btn{
+.btn {
     @include button;
     margin-bottom: 100px;
     background-color: $aws-clor;
     box-shadow: $box-shadow;
 
-    &:hover{
+    &:hover {
         cursor: pointer;
         background-color: #f8961e;
         transition: 0.7s;
     }
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         min-width: 100px;
         min-height: 35px;
         font-size: 15px;
     }
 }
 
-.quiz-app{
-    // display: none;
+.quiz-app {
+    display: flex;
     width: 70%;
     color: $text-color;
     justify-content: space-between;
     align-self: center;
-    margin: 20px 150px 0px ;
+    margin: 20px 150px 0px;
     font-family: $font-text;
     font-weight: $important-text;
-    @include breakpoints(tablet){
+
+    @include breakpoints(tablet) {
         font-size: 18px;
         margin-left: 40px;
         margin-bottom: 80px;
         flex-direction: column;
         gap: 10px;
     }
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         font-size: 14px;
         margin-left: 30px;
         flex-direction: column;
@@ -235,13 +249,12 @@ body {
     }
 }
 
-.quiz-info{
-    display: none;
+.quiz-info {
     font-family: $font-text;
     text-align: center;
 }
 
-.quiz-question{
+.quiz-question {
     margin: 70px 30px 25px;
     padding: 8px 10px;
     color: $primary-color;
@@ -249,25 +262,37 @@ body {
     font-weight: $important-text;
     border-radius: 20px;
     box-shadow: $box-shadow;
-    @include breakpoints(tablet){
+
+    @include breakpoints(tablet) {
         font-size: 18px;
     }
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         font-size: 15px;
     }
 }
 
-.score{
+.score {
     padding: 8px 20px;
+    margin-left: 75px;
     width: fit-content;
     color: $primary-color;
     background-color: $aws-clor;
     font-weight: $important-text;
     border-radius: 20px;
     box-shadow: $box-shadow;
+    @include breakpoints(mobile) {
+        margin-left: 0;
+
+    }
+
+    @include breakpoints(tablet) {
+        margin-left: 0;
+
+    }
 }
 
-.username{
+.username {
     padding: 8px 10px;
     width: fit-content;
     color: $tertiary-color;
@@ -277,12 +302,14 @@ body {
     box-shadow: $box-shadow;
 }
 
-.progress-bar{
+.progress-bar {
+    margin-top: 6px;
     display: flex;
     gap: 5px;
 }
 
-#progress-bar{
+#progress-bar {
+    margin-top: 15px;
     width: 120px;
     height: 35px;
     border-radius: 20px;
@@ -290,7 +317,7 @@ body {
     background-color: $text-color;
 }
 
-#progress-bar-full{
+#progress-bar-full {
     width: 100px;
     height: 34px;
     border-radius: 20px;
@@ -299,27 +326,26 @@ body {
     width: 0%;
 }
 
-.answers{
-    // display: flex;
-    // justify-content: space-between;
-    // flex-direction: column;
+.answers {
     margin: 50px;
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(400px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-template-rows: 90px 90px;
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         grid-template-rows: repeat(4, 65px);
 
     }
-    @include breakpoints(tablet){
+
+    @include breakpoints(tablet) {
         grid-template-rows: repeat(4, 65px);
 
     }
 }
 
 @for $i from 1 through 4 {
-    #answer-#{$i}{
+    #answer-#{$i} {
         // width: 600px;
         // height: 65px;
         margin-bottom: 15px;
@@ -330,71 +356,59 @@ body {
         font-weight: $important-text;
         color: $primary-color;
         box-shadow: $box-shadow;
-        @include breakpoints(tablet){
+
+        @include breakpoints(tablet) {
             // width: 450px;
             // height: 55px;
         }
-        @include breakpoints(mobile){
+
+        @include breakpoints(mobile) {
             font-size: 14px;
             // width: 250px;
             // height: 55px;
         }
 
-        &:hover{
+        &:hover {
             cursor: pointer;
             background-color: #ffbf69;
             transition: 0.7s;
         }
     }
-    @if $i%2 != 0{
-        .answer-#{$i}{
+
+    @if $i%2 !=0 {
+        .answer-#{$i} {
             margin-right: 25px;
         }
     }
 }
 
-@for $i from 1 through 2{
-    .answers-#{$i}{
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
-        // gap: 5px;
-        // @include breakpoints(tablet){
-        //     flex-direction: column;
-        // }
-        // @include breakpoints(mobile){
-        //     flex-direction: column;
-        // }
-    }
-    
-}
-
-.correct{
+.correct {
     background-color: $correct-color !important;
     color: $text-color !important;
 }
 
-.wrong{
+.wrong {
     background-color: $wrong-answer !important;
     color: $text-color !important;
 }
 
-.next-btn{
+.next-btn {
     @include next-btn;
     display: none;
 }
 
-#chevron{
+#chevron {
     display: none;
     font-size: 20px;
     font-weight: bolder;
     margin-left: 10px;
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         font-size: 18px;
     }
 }
 
-#empty-input{
+#empty-input {
     color: $text-color;
     font-size: 19px;
     font-family: $font-text;
@@ -403,17 +417,18 @@ body {
     margin-bottom: 15px;
 }
 
-.done{
+.done {
     max-width: 250px;
     height: auto;
     display: block;
     margin: 0 auto;
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         max-width: 160px;
     }
 }
 
-.result{
+.result {
     display: none;
     color: $text-color;
     font-family: $font-text;
@@ -421,91 +436,102 @@ body {
     text-align: center;
 }
 
-.congrats{
+.congrats {
     margin-bottom: 10px;
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         font-size: 13px;
     }
 }
 
-.complete{
+.complete {
     margin-bottom: 3px;
 }
 
-.user-score{
+.user-score {
     margin-bottom: 4px;
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         font-size: 15px;
     }
 }
 
-#total-question, #correct-answer, #wrong-answer, #user-score, #user-name{
+#total-question,
+#correct-answer,
+#wrong-answer,
+#user-score,
+#user-name {
     color: $aws-clor;
 }
 
-.check-answers{
+.check-answers {
     margin-bottom: 25px;
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         font-size: 15px;
     }
 }
 
-.result-btn{
+.result-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     margin-bottom: 30px;
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         flex-direction: column;
     }
 }
 
-.feedback-btn{
+.feedback-btn {
     @include resultButton;
 }
 
-.play-again-btn{
+.play-again-btn {
     @include resultButton;
 }
 
-.result-icon{
+.result-icon {
     margin-right: 4px;
 }
 
-.feedback-gif{
+.feedback-gif {
     max-width: 98px;
     height: auto;
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         max-width: 40px;
     }
 }
 
-.feedback-slide{
+.feedback-slide {
     display: none;
 }
 
-.feedback-text{
+.feedback-text {
     color: $text-color;
     font-weight: $important-text;
     font-size: 48px;
     font-family: $font-text;
-    @include breakpoints(tablet){
+
+    @include breakpoints(tablet) {
         font-size: 38px;
     }
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         font-size: 28px;
     }
 }
 
-.feedback-1{
+.feedback-1 {
     margin-top: 25px;
     display: flex;
     justify-content: center;
     gap: 3px;
 }
 
-.feedback-2{
+.feedback-2 {
     display: flex;
     flex-direction: column;
     margin: 38px 30px 25px;
@@ -516,51 +542,56 @@ body {
     box-shadow: $box-shadow;
     color: $tertiary-color;
     font-family: $font-text;
-    @include breakpoints(tablet){
+
+    @include breakpoints(tablet) {
         font-size: 18px;
     }
-    @include breakpoints(mobile){
+
+    @include breakpoints(mobile) {
         font-size: 15px;
     }
 }
 
-#incorrect-num, #user-incorrect, #user-correct, #title{
+#incorrect-num,
+#user-incorrect,
+#user-correct,
+#title {
     color: $secondary-color;
     font-weight: $important-text;
 }
 
-.user-answer{
+.user-answer {
     margin-top: 10px;
 }
 
-#answer-incorrect{
+#answer-incorrect {
     color: $wrong-answer;
 }
 
-.correct-answer{
+.correct-answer {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-#answer-incorrect{
+#answer-incorrect {
     color: $wrong-answer;
 }
 
-#answer-correct{
+#answer-correct {
     color: $correct-color;
 }
 
-#explanation-text{
+#explanation-text {
     color: $tertiary-color;
 }
 
-.previous-btn{
+.previous-btn {
     @include next-btn;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.no-feedback{
+.no-feedback {
     text-align: center;
 }
