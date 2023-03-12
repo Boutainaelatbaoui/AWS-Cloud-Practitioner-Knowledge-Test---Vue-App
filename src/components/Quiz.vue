@@ -129,10 +129,12 @@ export default {
       showDiv1: false,
       showDiv3: false,
       showDiv2: true,
+      showButton: false,
       userName: "",
       errorMessage: '',
       currentIndex: 0,
       currentQuestion: 0,
+      selectedAnswerIndex: 0,
       score: 0,
     }
   },
@@ -154,9 +156,30 @@ export default {
       }
     },
 
-    shuffleQuestions() {
-      this.questions.sort(() => Math.random() - 0.5);
+    nextQuestion() {
+      if (this.selectedAnswerIndex === null) {
+        return;
+      }
+      this.showButton = !this.showButton;
+      this.currentIndex++;
+      this.currentQuestion = this.questions[this.currentIndex];
+      this.selectedAnswerIndex = 0;
     },
+
+    shuffleQuestions() {
+      return this.questions.sort(() => Math.random() - 0.5);
+    },
+
+    isLastQuestion() {
+      return this.currentIndex === this.questions.length - 1;
+    },
+
+    selectAnswer(index) {
+      this.selectedAnswerIndex = index;
+      this.showButton = !this.showButton;
+    },
+
+    
 
   },
 
@@ -167,7 +190,7 @@ export default {
 <template>
   <div class="quiz-app" id="quiz-app" v-show="showDiv1">
     <h3 class="username" id="username">{{ userName }}</h3>
-    <h3 class="score" id="score">Score: {{ questions.length }}</h3>
+    <h3 class="score" id="score">Score: {{ score }}</h3>
     <div class="progress-bar">
         <h3 class="progress" id="progress">Question</h3>
         <div id="progress-bar">
@@ -187,13 +210,13 @@ export default {
       </div>
   </div>
   <div class="quiz-info" id="quiz-info" v-show="showDiv3">
-      <h2 class="quiz-question" id="quiz">{{ currentQuestion.quest }}</h2>
+      <h2 class="quiz-question" id="quiz"> {{ currentQuestion.id +". "+ currentQuestion.quest }}</h2>
       <div class="answers" id="answers">
         
-          <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`">{{ answer }}</button>
+          <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`" @click="selectAnswer(index)">{{ answer }}</button>
         
       </div>
-      <button class="next-btn" id="next">Next <i class="bi bi-chevron-double-right" id="chevron"></i></button>
+      <button class="next-btn" id="next" v-show="showButton" @click="nextQuestion">Next <i class="bi bi-chevron-double-right" id="chevron"></i></button>
   </div>
 </template>
 

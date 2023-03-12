@@ -140,7 +140,7 @@ body {
     width: 75%;
     background-color: $primary-color;
     margin: 0 auto;
-    padding: 2rem;
+    // padding: 2rem;
     text-align: center;
     justify-content: center;
     border-radius: 50px;
@@ -394,11 +394,11 @@ body {
 
 .next-btn {
     @include next-btn;
-    display: none;
+    // display: none;
 }
 
 #chevron {
-    display: none;
+    // display: none;
     font-size: 20px;
     font-weight: bolder;
     margin-left: 10px;
