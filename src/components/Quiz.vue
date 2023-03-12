@@ -130,6 +130,7 @@ export default {
       showDiv3: false,
       showDiv2: true,
       showButton: false,
+      buttonDisabled: false,
       userName: "",
       errorMessage: '',
       currentIndex: 0,
@@ -160,6 +161,7 @@ export default {
       if (this.selectedAnswerIndex === null) {
         return;
       }
+      this.buttonDisabled = !this.buttonDisabled;
       this.showButton = !this.showButton;
       this.currentIndex++;
       this.currentQuestion = this.questions[this.currentIndex];
@@ -176,6 +178,7 @@ export default {
 
     selectAnswer(index) {
       this.selectedAnswerIndex = index;
+      this.buttonDisabled = !this.buttonDisabled;
       this.showButton = !this.showButton;
     },
 
@@ -213,7 +216,7 @@ export default {
       <h2 class="quiz-question" id="quiz"> {{ currentQuestion.id +". "+ currentQuestion.quest }}</h2>
       <div class="answers" id="answers">
         
-          <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`" @click="selectAnswer(index)">{{ answer }}</button>
+          <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`" @click="selectAnswer(index)" :disabled="buttonDisabled">{{ answer }}</button>
         
       </div>
       <button class="next-btn" id="next" v-show="showButton" @click="nextQuestion">Next <i class="bi bi-chevron-double-right" id="chevron"></i></button>
