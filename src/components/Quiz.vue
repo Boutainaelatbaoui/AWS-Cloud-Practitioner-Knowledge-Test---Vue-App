@@ -133,6 +133,7 @@ export default {
       buttonDisabled: false,
       isMouseOver: false,
       showResult: true,
+      showFeed: false,
       userName: "",
       errorMessage: '',
       currentIndex: 0,
@@ -216,7 +217,12 @@ export default {
       this.showResult = !this.showResult;
       this.showDiv2   = !this.showDiv2;
       this.userName   = "";
-    }
+    },
+
+    feedback() {
+      this.showResult = !this.showResult;
+      this.showFeed   = !this.showFeed;
+    },
 
   },
 
@@ -268,9 +274,28 @@ export default {
       <h2 class="user-score">Your score is : <span id="user-score">{{ score }}</span> / <span id="total-question">100</span></h2>
       <h2 class="check-answers">You got <span id="correct-answer">{{ correct }} correct</span> and <span id="wrong-answer">{{ wrong }} wrong</span> answers.</h2>
       <div class="result-btn">
-          <button class="feedback-btn" id="feedback"><i class="bi bi-pencil-square result-icon"></i> Feedback</button>
+          <button class="feedback-btn" id="feedback" @click="feedback()"><i class="bi bi-pencil-square result-icon"></i> Feedback</button>
           <button class="play-again-btn" id="play-again" @click="playAgain()"><i class="bi bi-play-fill result-icon"></i> Play Again</button>
       </div>
+  </div>
+  <div class="feedback-slide" id="feedback-slide" v-show="showFeed">
+      <span class="text-logo">Quizizy</span>
+      <div class="feedback-1">
+          <img class="feedback-gif" src="../assets/img/bouncy-a-paper-airplane-with-a-check-mark.gif" alt="Quiz Done" />
+          <h1 class="feedback-text">Quiz Feedback</h1>
+      </div>
+      <div id="feedback-slide1">
+          <div v-if="array_quiz.length == 0" class="feedback-2">
+              <h2 class="no-feedback">There is no feedback. All your answers are correct.</h2>
+          </div>
+          <div v-else class="feedback-2" v-for="(item, index) in array_quiz" :key="index">
+            <h3 class="wrong-answer"><span id="incorrect-num">Question N°1:  </span><span id="incorrect-answer">{{ item.question }}</span></h3>
+            <h3 class="user-answer"><span id="user-incorrect">Your Answer:  </span><span id="answer-incorrect">{{ item.incorrect }}</span></h3>
+            <h3 class="correct-answer"><span id="user-correct">Correct Answer:  </span><span id="answer-correct">{{ item.correct }}</span></h3>
+            <h3 class="explanation"><span id="title">Explanation:  </span><span id="explanation-text">{{ item.detail }}</span></h3>
+          </div>
+      </div>
+      <button class="previous-btn" id="previous">Previous</button>
     </div>
 </template>
 
