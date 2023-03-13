@@ -259,8 +259,8 @@ export default {
           <h2>Congrats <span id="user-name"></span> !!</h2>
           <h2 class="complete">You've completed the Quiz</h2>
       </div>
-      <h2 class="user-score">Your score is : <span id="user-score"></span> / <span id="total-question">100</span></h2>
-      <h2 class="check-answers">You got <span id="correct-answer"></span> and <span id="wrong-answer"></span> answers.</h2>
+      <h2 class="user-score">Your score is : <span id="user-score">{{ score }}</span> / <span id="total-question">100</span></h2>
+      <h2 class="check-answers">You got <span id="correct-answer">{{ correct }} correct</span> and <span id="wrong-answer">{{ wrong }} wrong</span> answers.</h2>
       <div class="result-btn">
           <button class="feedback-btn" id="feedback"><i class="bi bi-pencil-square result-icon"></i> Feedback</button>
           <button class="play-again-btn" id="play-again"><i class="bi bi-play-fill result-icon"></i> Play Again</button>
