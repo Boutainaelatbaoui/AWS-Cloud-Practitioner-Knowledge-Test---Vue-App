@@ -246,7 +246,7 @@ export default {
       <div class="answers" id="answers">
         
           <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`"
-          :class="{'selected-answer': selectedAnswerIndex === index, 'correct': answered && isCorrectAnswer(index), 'wrong':answered && !isCorrectAnswer(index)}"
+          :class="{'selected-answer': selectedAnswerIndex === index, 'correct': answered && isCorrectAnswer(index) , 'wrong':answered && !isCorrectAnswer(index)}"
           @click="selectAnswer(index+1)" 
           :disabled="buttonDisabled">{{ answer }}</button>
         
