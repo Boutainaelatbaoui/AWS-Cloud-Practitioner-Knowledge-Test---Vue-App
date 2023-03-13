@@ -127,11 +127,11 @@ export default {
       },
       ],
       showDiv1: false,
-      showDiv3: false,
       showDiv2: true,
       showButton: false,
       buttonDisabled: false,
       isMouseOver: false,
+      showResult: true,
       userName: "",
       errorMessage: '',
       currentIndex: 0,
@@ -152,21 +152,19 @@ export default {
         this.errorMessage = 'Please Enter a name to start the quizz';
       } else {
         this.shuffleQuestions();
-        this.currentIndex = 0;
+        this.currentIndex = 1;
         this.currentQuestion = this.questions[this.currentIndex];
         this.score = 0;
         this.showDiv1 = !this.showDiv1;
         this.showDiv2 = !this.showDiv2;
         this.showDiv3 = !this.showDiv3;
+        this.showResult = !this.showResult;
         this.userName = this.userName;
         this.errorMessage = '';
       }
     },
 
     nextQuestion() {
-      if (this.selectedAnswerIndex === null) {
-        return;
-      }
       this.answered = !this.answered;
       this.buttonDisabled = !this.buttonDisabled;
       this.handleMouseOver();
@@ -179,10 +177,6 @@ export default {
 
     shuffleQuestions() {
       return this.questions.sort(() => Math.random() - 0.5);
-    },
-
-    isLastQuestion() {
-      return this.currentIndex === this.questions.length - 1;
     },
 
     selectAnswer(index) {
@@ -205,6 +199,10 @@ export default {
       }
     },
 
+    isLastQuestion() {
+      return this.currentIndex === this.questions.length - 1;
+    },
+
     handleMouseOver() {
       this.isMouseOver = !this.isMouseOver;
     },
@@ -220,7 +218,7 @@ export default {
 </script>
 
 <template>
-  <div class="quiz-app" id="quiz-app" v-show="showDiv1">
+  <div v-if="currentIndex < questions.length && currentIndex != 0" class="quiz-app" id="quiz-app">
     <h3 class="username" id="username">{{ userName }}</h3>
     <h3 class="score" id="score">Score: {{ score }}</h3>
     <div class="progress-bar">
@@ -241,7 +239,7 @@ export default {
           <button class="btn" id="start" @click="startQuiz">Start</button>
       </div>
   </div>
-  <div class="quiz-info" id="quiz-info" v-show="showDiv3">
+  <div v-if="currentIndex < questions.length && currentIndex != 0" class="quiz-info" id="quiz-info">
       <h2 class="quiz-question" id="quiz"> {{ currentIndex+1 +". "+ currentQuestion.quest }}</h2>
       <div class="answers" id="answers">
         
@@ -253,6 +251,20 @@ export default {
       </div>
       <button class="next-btn" id="next" v-show="showButton" @click="nextQuestion" @mouseover="handleMouseOver">Next <i class="bi bi-chevron-double-right" id="chevron" v-if="isMouseOver"></i></button>
   </div>
+  <div v-else v-show="!showResult" class="result" id="result">
+      <span class="text-logo">Quizizy</span>
+      <img class="done" src="../assets/img/flame-success.gif" alt="Quiz Done" />
+      <div class="congrats">
+          <h2>Congrats <span id="user-name"></span> !!</h2>
+          <h2 class="complete">You've completed the Quiz</h2>
+      </div>
+      <h2 class="user-score">Your score is : <span id="user-score"></span> / <span id="total-question">100</span></h2>
+      <h2 class="check-answers">You got <span id="correct-answer"></span> and <span id="wrong-answer"></span> answers.</h2>
+      <div class="result-btn">
+          <button class="feedback-btn" id="feedback"><i class="bi bi-pencil-square result-icon"></i> Feedback</button>
+          <button class="play-again-btn" id="play-again"><i class="bi bi-play-fill result-icon"></i> Play Again</button>
+      </div>
+    </div>
 </template>
 
 <style scoped>
