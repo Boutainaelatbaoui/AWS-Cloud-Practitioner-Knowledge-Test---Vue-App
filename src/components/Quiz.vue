@@ -212,6 +212,12 @@ export default {
       return index+1 === this.currentQuestion.response;
     },
 
+    playAgain() {
+      this.showResult = !this.showResult;
+      this.showDiv2   = !this.showDiv2;
+      this.userName   = "";
+    }
+
   },
 
 
@@ -263,7 +269,7 @@ export default {
       <h2 class="check-answers">You got <span id="correct-answer">{{ correct }} correct</span> and <span id="wrong-answer">{{ wrong }} wrong</span> answers.</h2>
       <div class="result-btn">
           <button class="feedback-btn" id="feedback"><i class="bi bi-pencil-square result-icon"></i> Feedback</button>
-          <button class="play-again-btn" id="play-again"><i class="bi bi-play-fill result-icon"></i> Play Again</button>
+          <button class="play-again-btn" id="play-again" @click="playAgain()"><i class="bi bi-play-fill result-icon"></i> Play Again</button>
       </div>
     </div>
 </template>
