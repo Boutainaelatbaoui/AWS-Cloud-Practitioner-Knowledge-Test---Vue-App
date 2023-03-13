@@ -131,6 +131,7 @@ export default {
       showDiv2: true,
       showButton: false,
       buttonDisabled: false,
+      isMouseOver: false,
       userName: "",
       errorMessage: '',
       currentIndex: 0,
@@ -162,6 +163,7 @@ export default {
         return;
       }
       this.buttonDisabled = !this.buttonDisabled;
+      this.handleMouseOver();
       this.showButton = !this.showButton;
       this.currentIndex++;
       this.currentQuestion = this.questions[this.currentIndex];
@@ -180,6 +182,10 @@ export default {
       this.selectedAnswerIndex = index;
       this.buttonDisabled = !this.buttonDisabled;
       this.showButton = !this.showButton;
+    },
+
+    handleMouseOver() {
+      this.showChevron = !this.showChevron;
     },
 
     
@@ -219,7 +225,7 @@ export default {
           <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`" @click="selectAnswer(index)" :disabled="buttonDisabled">{{ answer }}</button>
         
       </div>
-      <button class="next-btn" id="next" v-show="showButton" @click="nextQuestion">Next <i class="bi bi-chevron-double-right" id="chevron"></i></button>
+      <button class="next-btn" id="next" v-show="showButton" @click="nextQuestion" @mouseover="isMouseOver = true" @mouseout="isMouseOver = false">Next <i class="bi bi-chevron-double-right" id="chevron" v-if="isMouseOver"></i></button>
   </div>
 </template>
 
