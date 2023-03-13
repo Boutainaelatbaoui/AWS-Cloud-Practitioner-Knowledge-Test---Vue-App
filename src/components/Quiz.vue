@@ -182,10 +182,13 @@ export default {
       this.selectedAnswerIndex = index;
       this.buttonDisabled = !this.buttonDisabled;
       this.showButton = !this.showButton;
+      if (this.selectedAnswerIndex === this.currentQuestion.response) {
+        this.score+=10;
+      }
     },
 
     handleMouseOver() {
-      this.showChevron = !this.showChevron;
+      this.isMouseOver = !this.isMouseOver;
     },
 
     
@@ -219,13 +222,13 @@ export default {
       </div>
   </div>
   <div class="quiz-info" id="quiz-info" v-show="showDiv3">
-      <h2 class="quiz-question" id="quiz"> {{ currentQuestion.id +". "+ currentQuestion.quest }}</h2>
+      <h2 class="quiz-question" id="quiz"> {{ currentIndex+1 +". "+ currentQuestion.quest }}</h2>
       <div class="answers" id="answers">
         
-          <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`" @click="selectAnswer(index)" :disabled="buttonDisabled">{{ answer }}</button>
+          <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`" @click="selectAnswer(index+1)" :disabled="buttonDisabled">{{ answer }}</button>
         
       </div>
-      <button class="next-btn" id="next" v-show="showButton" @click="nextQuestion" @mouseover="isMouseOver = true" @mouseout="isMouseOver = false">Next <i class="bi bi-chevron-double-right" id="chevron" v-if="isMouseOver"></i></button>
+      <button class="next-btn" id="next" v-show="showButton" @click="nextQuestion" @mouseover="handleMouseOver">Next <i class="bi bi-chevron-double-right" id="chevron" v-if="isMouseOver"></i></button>
   </div>
 </template>
 
