@@ -127,6 +127,7 @@ export default {
       },
       ],
       showDiv1: false,
+      showDiv3: false,
       showDiv2: true,
       showButton: false,
       buttonDisabled: false,
@@ -152,7 +153,7 @@ export default {
         this.errorMessage = 'Please Enter a name to start the quizz';
       } else {
         this.shuffleQuestions();
-        this.currentIndex = 1;
+        this.currentIndex = 0;
         this.currentQuestion = this.questions[this.currentIndex];
         this.score = 0;
         this.showDiv1 = !this.showDiv1;
@@ -218,7 +219,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="currentIndex < questions.length && currentIndex != 0" class="quiz-app" id="quiz-app">
+  <div v-if="currentIndex <= questions.length - 1" v-show="showDiv1" class="quiz-app" id="quiz-app">
     <h3 class="username" id="username">{{ userName }}</h3>
     <h3 class="score" id="score">Score: {{ score }}</h3>
     <div class="progress-bar">
@@ -239,7 +240,7 @@ export default {
           <button class="btn" id="start" @click="startQuiz">Start</button>
       </div>
   </div>
-  <div v-if="currentIndex < questions.length && currentIndex != 0" class="quiz-info" id="quiz-info">
+  <div v-if="currentIndex <= questions.length - 1" v-show="showDiv3" class="quiz-info" id="quiz-info">
       <h2 class="quiz-question" id="quiz"> {{ currentIndex+1 +". "+ currentQuestion.quest }}</h2>
       <div class="answers" id="answers">
         
