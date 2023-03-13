@@ -137,6 +137,7 @@ export default {
       currentIndex: 0,
       currentQuestion: 0,
       selectedAnswerIndex: 0,
+      answered: false,
       score: 0,
       correct: 0,
       wrong: 0,
@@ -166,6 +167,7 @@ export default {
       if (this.selectedAnswerIndex === null) {
         return;
       }
+      this.answered = !this.answered;
       this.buttonDisabled = !this.buttonDisabled;
       this.handleMouseOver();
       this.showButton = !this.showButton;
@@ -184,6 +186,7 @@ export default {
     },
 
     selectAnswer(index) {
+      this.answered = !this.answered;
       this.selectedAnswerIndex = index;
       this.buttonDisabled = !this.buttonDisabled;
       this.showButton = !this.showButton;
@@ -206,8 +209,8 @@ export default {
       this.isMouseOver = !this.isMouseOver;
     },
 
-    isCorrect(index) {
-      return index === this.currentQuestion.response;
+    isCorrectAnswer(index) {
+      return index+1 === this.currentQuestion.response;
     },
 
   },
@@ -243,7 +246,7 @@ export default {
       <div class="answers" id="answers">
         
           <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`"
-          :class="{'selected': selectedAnswerIndex === index, 'correct': isCorrect(index), 'wrong': selectedAnswerIndex !== null && selectedAnswerIndex == index && !isCorrect(index) && selectedAnswerIndex !== index }"
+          :class="{'selected-answer': selectedAnswerIndex === index, 'correct': answered && isCorrectAnswer(index), 'wrong':answered && !isCorrectAnswer(index)}"
           @click="selectAnswer(index+1)" 
           :disabled="buttonDisabled">{{ answer }}</button>
         
