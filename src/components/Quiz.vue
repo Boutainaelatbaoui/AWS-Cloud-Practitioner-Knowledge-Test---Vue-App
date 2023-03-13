@@ -138,6 +138,10 @@ export default {
       currentQuestion: 0,
       selectedAnswerIndex: 0,
       score: 0,
+      correct: 0,
+      wrong: 0,
+      obj: {},
+      array_quiz: [],
     }
   },
   
@@ -168,6 +172,7 @@ export default {
       this.currentIndex++;
       this.currentQuestion = this.questions[this.currentIndex];
       this.selectedAnswerIndex = 0;
+      this.obj = {};
     },
 
     shuffleQuestions() {
@@ -184,6 +189,16 @@ export default {
       this.showButton = !this.showButton;
       if (this.selectedAnswerIndex === this.currentQuestion.response) {
         this.score+=10;
+        this.correct++;
+      }
+      else {
+        this.wrong++;
+        this.obj["question"]  = this.currentQuestion.quest;
+        this.obj["incorrect"] = this.currentQuestion.option[this.selectedAnswerIndex];
+        this.obj["correct"] = this.currentQuestion.option[this.currentQuestion.response-1];
+        this.obj["detail"] = this.currentQuestion.explanation;
+        this.array_quiz.push(this.obj);
+        console.log(this.array_quiz);
       }
     },
 
@@ -191,7 +206,9 @@ export default {
       this.isMouseOver = !this.isMouseOver;
     },
 
-    
+    isCorrect(index) {
+      return index === this.currentQuestion.response;
+    },
 
   },
 
@@ -225,7 +242,10 @@ export default {
       <h2 class="quiz-question" id="quiz"> {{ currentIndex+1 +". "+ currentQuestion.quest }}</h2>
       <div class="answers" id="answers">
         
-          <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`" @click="selectAnswer(index+1)" :disabled="buttonDisabled">{{ answer }}</button>
+          <button class="answer" v-for="(answer, index) in currentQuestion.option" :key="index" :id="`answer-${index+1}`"
+          :class="{'selected': selectedAnswerIndex === index, 'correct': isCorrect(index), 'wrong': selectedAnswerIndex !== null && selectedAnswerIndex == index && !isCorrect(index) && selectedAnswerIndex !== index }"
+          @click="selectAnswer(index+1)" 
+          :disabled="buttonDisabled">{{ answer }}</button>
         
       </div>
       <button class="next-btn" id="next" v-show="showButton" @click="nextQuestion" @mouseover="handleMouseOver">Next <i class="bi bi-chevron-double-right" id="chevron" v-if="isMouseOver"></i></button>
