@@ -156,7 +156,11 @@ export default {
         this.shuffleQuestions();
         this.currentIndex = 0;
         this.currentQuestion = this.questions[this.currentIndex];
-        this.score = 0;
+        this.score   = 0;
+        this.correct = 0;
+        this.wrong   = 0;
+        this.obj     = {};
+        this.array_quiz = [];
         this.showDiv1 = !this.showDiv1;
         this.showDiv2 = !this.showDiv2;
         this.showDiv3 = !this.showDiv3;
@@ -193,7 +197,8 @@ export default {
       else {
         this.wrong++;
         this.obj["question"]  = this.currentQuestion.quest;
-        this.obj["incorrect"] = this.currentQuestion.option[this.selectedAnswerIndex];
+        console.log(this.selectedAnswerIndex);
+        this.obj["incorrect"] = this.currentQuestion.option[this.selectedAnswerIndex-1];
         this.obj["correct"] = this.currentQuestion.option[this.currentQuestion.response-1];
         this.obj["detail"] = this.currentQuestion.explanation;
         this.array_quiz.push(this.obj);
@@ -214,12 +219,16 @@ export default {
     },
 
     playAgain() {
-      this.showResult = !this.showResult;
-      this.showDiv2   = !this.showDiv2;
+      this.startQuiz();
       this.userName   = "";
     },
 
     feedback() {
+      this.showResult = !this.showResult;
+      this.showFeed   = !this.showFeed;
+    },
+
+    previous() {
       this.showResult = !this.showResult;
       this.showFeed   = !this.showFeed;
     },
@@ -289,13 +298,13 @@ export default {
               <h2 class="no-feedback">There is no feedback. All your answers are correct.</h2>
           </div>
           <div v-else class="feedback-2" v-for="(item, index) in array_quiz" :key="index">
-            <h3 class="wrong-answer"><span id="incorrect-num">Question N°1:  </span><span id="incorrect-answer">{{ item.question }}</span></h3>
+            <h3 class="wrong-answer"><span id="incorrect-num">Question N°{{ index+1 }}:  </span><span id="incorrect-answer">{{ item.question }}</span></h3>
             <h3 class="user-answer"><span id="user-incorrect">Your Answer:  </span><span id="answer-incorrect">{{ item.incorrect }}</span></h3>
             <h3 class="correct-answer"><span id="user-correct">Correct Answer:  </span><span id="answer-correct">{{ item.correct }}</span></h3>
             <h3 class="explanation"><span id="title">Explanation:  </span><span id="explanation-text">{{ item.detail }}</span></h3>
           </div>
       </div>
-      <button class="previous-btn" id="previous">Previous</button>
+      <button class="previous-btn" id="previous" @click="previous()">Previous</button>
     </div>
 </template>
 
