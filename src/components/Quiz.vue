@@ -136,9 +136,10 @@ export default {
       showDiv3: false,
       showDiv2: true,
       showButton: false,
+      showButton1: false,
       buttonDisabled: false,
       isMouseOver: false,
-      showResult: true,
+      showResult: false,
       showFeed: false,
       userName: "",
       errorMessage: '',
@@ -160,6 +161,9 @@ export default {
       if (this.userName === '') {
         this.errorMessage = 'Please Enter a name to start the quizz';
       } else {
+        this.showDiv1 = !this.showDiv1;
+        this.showDiv2 = !this.showDiv2;
+        this.showDiv3 = !this.showDiv3;
         this.step++;
         this.shuffleQuestions();
         this.currentIndex = 0;
@@ -169,10 +173,6 @@ export default {
         this.wrong   = 0;
         this.obj     = {};
         this.array_quiz = [];
-        this.showDiv1 = !this.showDiv1;
-        this.showDiv2 = !this.showDiv2;
-        this.showDiv3 = !this.showDiv3;
-        this.showResult = !this.showResult;
         this.userName = this.userName;
         this.errorMessage = '';
       }
@@ -199,6 +199,10 @@ export default {
       this.selectedAnswerIndex = index;
       this.buttonDisabled = !this.buttonDisabled;
       this.showButton = !this.showButton;
+      if (this.currentIndex === this.questions.length - 1) {
+        this.showButton = !this.showButton;
+        this.showButton1 = !this.showButton1;
+      }
       if (this.selectedAnswerIndex === this.currentQuestion.response) {
         this.score+=10;
         this.correct++;
@@ -216,7 +220,9 @@ export default {
     },
 
     isLastQuestion() {
-      return this.currentIndex === this.questions.length - 1;
+      if (this.currentIndex === this.questions.length - 1) {
+        return this.step++;
+      }
     },
 
     handleMouseOver() {
@@ -228,8 +234,7 @@ export default {
     },
 
     playAgain() {
-      this.startQuiz();
-      this.userName   = "";
+      location.reload();
     },
 
     feedback() {
@@ -240,6 +245,13 @@ export default {
     previous() {
       this.showResult = !this.showResult;
       this.showFeed   = !this.showFeed;
+    },
+
+    submit() {
+      this.showDiv1 = !this.showDiv1;
+      this.showDiv3 = !this.showDiv3;
+      this.showResult = !this.showResult;
+      this.step+=2;
     },
 
   },
@@ -282,8 +294,9 @@ export default {
         
       </div>
       <button class="next-btn" id="next" v-show="showButton" @click="nextQuestion" @mouseover="handleMouseOver">Next <i class="bi bi-chevron-double-right" id="chevron" v-if="isMouseOver"></i></button>
+      <button class="next-btn" id="next" v-show="showButton1" @click="submit" @mouseover="handleMouseOver">Submit <i class="bi bi-chevron-double-right" id="chevron" v-if="isMouseOver"></i></button>
   </div>
-  <div v-else v-show="!showResult" class="result" id="result">
+  <div v-show="showResult" class="result" id="result">
       <span class="text-logo">Quizizy</span>
       <img class="done" src="../assets/img/flame-success.gif" alt="Quiz Done" />
       <div class="congrats">

@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="stepper-item" :class=" 'current': step == item, 'success': step > item" v-for="item in 3" :key="item">
+            <div class="stepper-item" :class="{'current': step == item, 'success': step > item}" v-for="item in 3" :key="item">
                 <div class="stepper-item-counter">
                     <i class="bi bi-check-lg icon"></i>
                     <span class="number">
