@@ -45,6 +45,120 @@ body {
   font-weight: bold;
 }
 
+.wrapper-stepper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px;
+  border-radius: 32px;
+}
+
+.stepper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 660px;
+  position: relative;
+  z-index: 0;
+  margin-bottom: 24px;
+}
+.stepper-progress {
+  position: absolute;
+  background-color: white;
+  height: 3px;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.stepper-progress-bar {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: #ffd60a;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.stepper-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+.stepper-item-counter {
+  background-color: white;
+  height: 60px;
+  width: 60px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  border-radius: 100%;
+  border: 3px solid white;
+  position: relative;
+}
+.stepper-item-counter .icon {
+  color: #001d3d;
+  font-weight: bolder;
+  font-size: 38px;
+  position: absolute;
+  opacity: 0;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+.stepper-item-counter .number {
+  color: #001d3d;
+  font-size: 25px;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+  font-weight: bold;
+}
+
+.stepper-item.success .stepper-item-counter {
+  border-color: #ffd60a;
+  background-color: #ffd60a;
+  color: white;
+  font-weight: 600;
+}
+.stepper-item.success .stepper-item-counter .icon {
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.stepper-item.success .stepper-item-counter .number {
+  opacity: 0;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.stepper-item.current .stepper-item-counter {
+  border-color: #ffd60a;
+  background-color: #ffd60a;
+  color: white;
+  font-weight: 600;
+}
+
 #app {
   width: 75%;
   background-color: #0f084b;

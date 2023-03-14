@@ -149,6 +149,7 @@ export default {
       score: 0,
       correct: 0,
       wrong: 0,
+      step: 1,
       obj: {},
       array_quiz: [],
     }
@@ -159,6 +160,7 @@ export default {
       if (this.userName === '') {
         this.errorMessage = 'Please Enter a name to start the quizz';
       } else {
+        this.step++;
         this.shuffleQuestions();
         this.currentIndex = 0;
         this.currentQuestion = this.questions[this.currentIndex];
@@ -247,7 +249,7 @@ export default {
 </script>
 
 <template>
-  <Stepper></Stepper>
+  <Stepper :step="step"></Stepper>
   <div v-if="currentIndex <= questions.length - 1" v-show="showDiv1" class="quiz-app" id="quiz-app">
     <h3 class="username" id="username">{{ userName }}</h3>
     <h3 class="score" id="score">Score: {{ score }}</h3>
