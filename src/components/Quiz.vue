@@ -1,7 +1,13 @@
 <script>
 import { ref } from 'vue';
+import ProgressBar from './ProgressBar.vue';
+import Stepper from './StepperComponent.vue';
 
 export default {
+  components: {
+    ProgressBar,
+    Stepper
+  },
   data() {
     return {
       questions : [
@@ -177,6 +183,7 @@ export default {
       this.showButton = !this.showButton;
       this.currentIndex++;
       this.currentQuestion = this.questions[this.currentIndex];
+      this.progress = this.currentIndex;
       this.selectedAnswerIndex = 0;
       this.obj = {};
     },
@@ -240,15 +247,16 @@ export default {
 </script>
 
 <template>
+  <Stepper></Stepper>
   <div v-if="currentIndex <= questions.length - 1" v-show="showDiv1" class="quiz-app" id="quiz-app">
     <h3 class="username" id="username">{{ userName }}</h3>
     <h3 class="score" id="score">Score: {{ score }}</h3>
     <div class="progress-bar">
         <h3 class="progress" id="progress">Question</h3>
         <div id="progress-bar">
-          <div id="progress-bar-full"></div>
-        </div>
+        <ProgressBar :current="currentIndex"></ProgressBar>
     </div>
+  </div>
   </div>
   <div class="first-slide" id="first-slide" v-show="showDiv2">
       <span class="text-logo">Quizizy</span>
