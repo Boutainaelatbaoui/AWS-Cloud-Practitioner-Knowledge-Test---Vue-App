@@ -434,12 +434,48 @@ body {
   .answers {
     -ms-grid-rows: (65px)[4];
     grid-template-rows: repeat(4, 65px);
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+  .answers > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+  .answers > *:nth-child(2) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+  }
+  .answers > *:nth-child(3) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+  }
+  .answers > *:nth-child(4) {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
   }
 }
 @media (min-width: 768px) and (max-width: 1120px) {
   .answers {
     -ms-grid-rows: (65px)[4];
     grid-template-rows: repeat(4, 65px);
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+  .answers > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+  .answers > *:nth-child(2) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+  }
+  .answers > *:nth-child(3) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+  }
+  .answers > *:nth-child(4) {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
   }
 }
 
